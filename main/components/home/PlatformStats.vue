@@ -47,10 +47,28 @@ function formatStatValue(val: number): string {
 
 <style scoped>
 .platform-stats {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: var(--border-radius-lg, 12px);
-  padding: 40px 32px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  border-radius: var(--border-radius-xl, 16px);
+  padding: 48px 40px;
   margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-stats::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(70, 195, 123, 0.08) 0%, transparent 50%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .stats-inner {
@@ -59,31 +77,39 @@ function formatStatValue(val: number): string {
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  transition: background 0.3s;
+  gap: 18px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stat-card:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .stat-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .stat-info {
@@ -92,21 +118,27 @@ function formatStatValue(val: number): string {
 }
 
 .stat-value {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   color: #fff;
   line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 4px;
+  margin-top: 6px;
+  font-weight: 500;
 }
 
 @media (max-width: 900px) {
   .stats-inner {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .platform-stats {
+    padding: 32px 24px;
   }
 }
 
@@ -117,12 +149,16 @@ function formatStatValue(val: number): string {
   }
 
   .stat-value {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .stat-icon {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .stat-card {
+    padding: 16px;
   }
 }
 </style>

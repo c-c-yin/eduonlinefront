@@ -277,7 +277,7 @@ useSeoMeta({
 
 <style scoped>
 .teacher-dashboard-page {
-  background: #f7f8fa;
+  background: var(--bg-page);
   min-height: 100vh;
   padding-bottom: 48px;
 }
@@ -285,27 +285,57 @@ useSeoMeta({
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 0 0;
+  padding: 24px 20px 0;
 }
 
 .welcome-banner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  padding: 32px 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 16px;
+  padding: 36px 44px;
   margin-bottom: 24px;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05));
+  pointer-events: none;
+}
+
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: 100px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
 }
 
 .welcome-banner h1 {
-  margin: 0 0 8px;
-  font-size: 24px;
-  font-weight: 600;
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
 }
 
 .welcome-banner p {
   margin: 0;
   font-size: 14px;
-  opacity: 0.85;
+  opacity: 0.75;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
 }
 
 .stats-grid {
@@ -317,54 +347,71 @@ useSeoMeta({
 
 .stat-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   align-items: center;
   gap: 16px;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--card-color);
+  opacity: 0.08;
+  border-radius: 0 16px 0 100%;
 }
 
 .stat-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .stat-icon {
   width: 56px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--card-color);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .stat-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: #333;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
 .stat-label {
   font-size: 13px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
 .stat-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #f56c6c;
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: #fff;
   font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
 .quick-actions {
@@ -372,35 +419,49 @@ useSeoMeta({
 }
 
 .section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 18px;
 }
 
 .action-grid {
   display: flex;
-  gap: 16px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
+  gap: 10px;
+  padding: 14px 24px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  color: #666;
+  color: var(--text-regular);
   font-size: 14px;
-  transition: all 0.2s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card);
+  position: relative;
 }
 
 .action-item:hover {
-  color: #667eea;
-  background: #f0f2ff;
-  transform: translateY(-1px);
+  color: #6366f1;
+  background: linear-gradient(135deg, #f0f2ff 0%, #e0e7ff 100%);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.action-item :deep(.el-icon) {
+  padding: 8px;
+  background: var(--bg-light);
+  border-radius: 8px;
+}
+
+.action-item:hover :deep(.el-icon) {
+  background: rgba(99, 102, 241, 0.15);
 }
 
 .content-grid {
@@ -412,18 +473,29 @@ useSeoMeta({
 
 .panel {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
 }
 
 .panel-title {
   font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-title::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 2px;
 }
 
 .homework-list,
@@ -431,7 +503,7 @@ useSeoMeta({
 .knowledge-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .homework-item,
@@ -439,77 +511,85 @@ useSeoMeta({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  background: var(--bg-light);
 }
 
 .homework-item:hover,
 .audit-item:hover {
-  background: #f7f8fa;
+  background: #e0e7ff;
+  transform: translateX(4px);
 }
 
 .homework-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .homework-name {
   font-size: 14px;
-  color: #333;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .homework-class {
   font-size: 12px;
-  color: #999;
+  color: var(--text-secondary);
 }
 
 .homework-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 13px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .homework-count {
-  color: #f56c6c;
+  color: #ef4444;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 4px 10px;
+  border-radius: 10px;
 }
 
 .homework-date {
-  color: #999;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
 .homework-submit {
   font-size: 12px;
-  color: #667eea;
+  color: #6366f1;
+  font-weight: 600;
 }
 
 .audit-name {
   font-size: 14px;
-  color: #333;
+  color: var(--text-primary);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .knowledge-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 12px;
-  border-radius: 8px;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .knowledge-item:hover {
-  background: #f7f8fa;
+  background: var(--bg-light);
 }
 
 .knowledge-info {
@@ -520,28 +600,28 @@ useSeoMeta({
 
 .knowledge-class {
   font-size: 14px;
-  color: #333;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .knowledge-rate {
   font-size: 14px;
-  color: #667eea;
-  font-weight: 600;
+  color: #6366f1;
+  font-weight: 700;
 }
 
 .progress-bar {
-  height: 6px;
-  background: #f0f0f0;
-  border-radius: 3px;
+  height: 8px;
+  background: var(--bg-light);
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 3px;
-  transition: width 0.3s;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (max-width: 900px) {
@@ -561,6 +641,14 @@ useSeoMeta({
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .welcome-banner {
+    padding: 24px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 20px;
   }
 }
 </style>

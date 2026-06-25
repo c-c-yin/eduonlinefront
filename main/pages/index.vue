@@ -345,7 +345,7 @@ useSeoMeta({
 
 <style scoped>
 .home-page {
-  background: #f7f8fa;
+  background: var(--bg-page);
   min-height: 100vh;
 }
 
@@ -360,31 +360,46 @@ useSeoMeta({
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 0 48px;
+  padding: 28px 20px 48px;
 }
 
 .shortcuts-section {
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .dashboard-shortcut-section {
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out 0.1s backwards;
 }
 
 .dashboard-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 32px;
-  border-radius: 12px;
+  padding: 28px 36px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
+  pointer-events: none;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-card.teacher-card {
@@ -392,34 +407,45 @@ useSeoMeta({
 }
 
 .dashboard-card.student-card {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
 }
 
 .dashboard-card .card-left h3 {
-  margin: 0 0 8px;
-  font-size: 20px;
-  font-weight: 600;
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .dashboard-card .card-left p {
   margin: 0;
   font-size: 14px;
   opacity: 0.9;
+  font-weight: 400;
 }
 
 .dashboard-card .card-right {
   flex-shrink: 0;
   margin-left: 24px;
-  opacity: 0.8;
+  opacity: 0.85;
+  background: rgba(255, 255, 255, 0.15);
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-section {
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out 0.15s backwards;
 }
 
 .student-extra-section {
   margin-bottom: 24px;
   min-height: 40px;
+  animation: fadeInUp 0.5s ease-out 0.15s backwards;
 }
 
 .student-extra-grid {
@@ -429,38 +455,52 @@ useSeoMeta({
 }
 
 .extra-card {
-  border-radius: 12px;
-  padding: 20px 24px;
+  border-radius: 16px;
+  padding: 24px 28px;
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.extra-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
 }
 
 .extra-card.continue-card {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
 }
 
 .extra-card.homework-card {
-  background: linear-gradient(135deg, #fa8231 0%, #eb3b5a 100%);
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
 }
 
 .extra-card-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   opacity: 0.95;
 }
 
 .extra-card-label {
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .extra-card-title {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -476,7 +516,7 @@ useSeoMeta({
 .progress-bar {
   flex: 1;
   height: 8px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -485,13 +525,13 @@ useSeoMeta({
   height: 100%;
   background: #fff;
   border-radius: 4px;
-  transition: width 0.3s;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .progress-text {
   font-size: 13px;
-  font-weight: 600;
-  min-width: 36px;
+  font-weight: 700;
+  min-width: 40px;
   text-align: right;
 }
 
@@ -504,37 +544,49 @@ useSeoMeta({
 }
 
 .meta-subject {
-  background: rgba(255, 255, 255, 0.25);
-  padding: 2px 10px;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 500;
 }
 
 .meta-deadline.overdue {
   color: #fff;
   font-weight: 700;
-  background: rgba(245, 108, 108, 0.95);
-  padding: 2px 8px;
-  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.9);
+  padding: 4px 10px;
+  border-radius: 12px;
 }
 
 .extra-card-btn {
   align-self: flex-start;
+  border: none;
+  font-weight: 600;
+}
+
+:deep(.extra-card-btn.el-button) {
+  background: rgba(255, 255, 255, 0.9);
+  color: inherit;
 }
 
 .broadcast-section {
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out 0.2s backwards;
 }
 
 .stats-section {
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out 0.25s backwards;
 }
 
 .recommend-section {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  animation: fadeInUp 0.5s ease-out 0.3s backwards;
 }
 
 .topic-carousel-section {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  animation: fadeInUp 0.5s ease-out 0.35s backwards;
 }
 
 .video-grid {
@@ -547,6 +599,7 @@ useSeoMeta({
   display: flex;
   gap: 24px;
   margin-bottom: 24px;
+  animation: fadeInUp 0.5s ease-out 0.4s backwards;
 }
 
 .paper-part {
@@ -562,11 +615,22 @@ useSeoMeta({
 .popup-content {
   line-height: 1.8;
   font-size: 14px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .popup-content :deep(img) {
   max-width: 100%;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1200px) {
@@ -596,7 +660,19 @@ useSeoMeta({
   }
 
   .main-content {
-    padding: 16px 0 32px;
+    padding: 16px 12px 32px;
+  }
+
+  .dashboard-card {
+    padding: 20px 24px;
+  }
+
+  .dashboard-card .card-left h3 {
+    font-size: 18px;
+  }
+
+  .extra-card {
+    padding: 20px;
   }
 }
 </style>

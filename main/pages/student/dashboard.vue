@@ -314,7 +314,7 @@ useSeoMeta({
 
 <style scoped>
 .student-dashboard-page {
-  background: #f7f8fa;
+  background: var(--bg-page);
   min-height: 100vh;
   padding-bottom: 48px;
 }
@@ -322,27 +322,42 @@ useSeoMeta({
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 0 0;
+  padding: 24px 20px 0;
 }
 
 .welcome-banner {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  border-radius: 12px;
-  padding: 32px 40px;
+  background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+  border-radius: 16px;
+  padding: 36px 44px;
   margin-bottom: 24px;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
+  pointer-events: none;
 }
 
 .welcome-banner h1 {
-  margin: 0 0 8px;
-  font-size: 24px;
-  font-weight: 600;
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .welcome-banner p {
   margin: 0;
   font-size: 14px;
   opacity: 0.85;
+  font-weight: 400;
 }
 
 .stats-grid {
@@ -354,41 +369,62 @@ useSeoMeta({
 
 .stat-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--card-color);
+  opacity: 0.08;
+  border-radius: 0 16px 0 100%;
 }
 
 .stat-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .stat-icon {
   width: 56px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--card-color);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .stat-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: #333;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
 .stat-label {
   font-size: 13px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
@@ -402,9 +438,9 @@ useSeoMeta({
 .continue-card,
 .pending-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -412,98 +448,114 @@ useSeoMeta({
 
 .continue-card {
   cursor: pointer;
-  transition: box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .continue-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .continue-left {
   display: flex;
   align-items: center;
-  gap: 16px;
-  color: #667eea;
+  gap: 18px;
+  color: #0ea5e9;
+}
+
+.continue-left > .el-icon {
+  padding: 12px;
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 12px;
 }
 
 .continue-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .continue-label {
   font-size: 12px;
-  color: #999;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .continue-name {
-  font-size: 15px;
-  color: #333;
-  font-weight: 500;
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .continue-progress {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 12px;
-  color: #999;
+  color: var(--text-secondary);
 }
 
 .cp-bar {
   width: 100px;
-  height: 4px;
-  background: #f0f0f0;
-  border-radius: 2px;
+  height: 6px;
+  background: var(--bg-light);
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .cp-fill {
   height: 100%;
-  background: #667eea;
-  border-radius: 2px;
+  background: linear-gradient(90deg, #0ea5e9 0%, #14b8a6 100%);
+  border-radius: 3px;
 }
 
 .pending-card {
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
 }
 
 .pending-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #f56c6c;
-  font-weight: 500;
+  gap: 10px;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .pending-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   cursor: pointer;
-  padding: 8px 12px;
-  background: #fef0f0;
-  border-radius: 8px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border-radius: 12px;
   width: 100%;
+  transition: all 0.2s;
+  border: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+.pending-item:hover {
+  background: #fee2e2;
 }
 
 .pending-name {
-  font-size: 14px;
-  color: #333;
-  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .pending-subject {
   font-size: 12px;
-  color: #999;
+  color: var(--text-secondary);
 }
 
 .pending-deadline {
   font-size: 12px;
-  color: #f56c6c;
+  color: #ef4444;
+  font-weight: 500;
 }
 
 .content-grid {
@@ -515,18 +567,29 @@ useSeoMeta({
 
 .panel {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
 }
 
 .panel-title {
   font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-title::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border-radius: 2px;
 }
 
 .weak-list {
@@ -536,35 +599,45 @@ useSeoMeta({
 }
 
 .weak-item {
-  padding: 12px;
-  border-radius: 8px;
-  background: #fef0f0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.1);
+  transition: all 0.2s;
+}
+
+.weak-item:hover {
+  transform: translateX(4px);
 }
 
 .weak-info {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .weak-name {
   font-size: 14px;
-  color: #333;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .weak-rate {
   font-size: 12px;
-  color: #f56c6c;
+  color: #ef4444;
   margin-left: auto;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 4px 10px;
+  border-radius: 10px;
 }
 
 .weak-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .profile-section {
@@ -576,35 +649,48 @@ useSeoMeta({
 }
 
 .section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 18px;
 }
 
 .action-grid {
   display: flex;
-  gap: 16px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
+  gap: 10px;
+  padding: 14px 24px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  color: #666;
+  color: var(--text-regular);
   font-size: 14px;
-  transition: all 0.2s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card);
 }
 
 .action-item:hover {
-  color: #43e97b;
-  background: #f0fff5;
-  transform: translateY(-1px);
+  color: var(--primary-color);
+  background: var(--primary-50);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(70, 195, 123, 0.15);
+}
+
+.action-item .el-icon {
+  padding: 8px;
+  background: var(--bg-light);
+  border-radius: 8px;
+}
+
+.action-item:hover .el-icon {
+  background: rgba(70, 195, 123, 0.15);
 }
 
 @media (max-width: 900px) {
@@ -628,6 +714,14 @@ useSeoMeta({
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .welcome-banner {
+    padding: 24px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 20px;
   }
 }
 </style>

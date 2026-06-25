@@ -56,36 +56,63 @@ function handleTabClick(index: number) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, transparent 100%);
+  border-radius: 3px;
 }
 
 .section-left {
   display: flex;
   align-items: flex-end;
-  gap: 24px;
+  gap: 28px;
 }
 
 .section-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin: 0;
+  position: relative;
+  padding-left: 14px;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  border-radius: 2px;
 }
 
 .section-tabs {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 4px;
 }
 
 .tab-item {
-  font-size: 15px;
-  color: #666;
+  font-size: 14px;
+  color: var(--text-secondary);
   cursor: pointer;
-  padding: 4px 0;
+  padding: 6px 0;
   position: relative;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
+  font-weight: 500;
 }
 
 .tab-item:hover {
@@ -94,17 +121,19 @@ function handleTabClick(index: number) {
 
 .tab-item.active {
   color: var(--primary-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .tab-item.active::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
   background: var(--primary-color);
+  border-radius: 3px;
 }
 
 .section-right {
@@ -114,39 +143,59 @@ function handleTabClick(index: number) {
 }
 
 .right-text {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  background: rgba(70, 195, 123, 0.08);
-  padding: 4px 12px;
-  border-radius: 12px;
+  background: var(--primary-50);
+  color: var(--primary-color);
+  padding: 5px 14px;
+  border-radius: 14px;
+  font-weight: 500;
 }
 
 .section-more {
   display: flex;
   align-items: center;
-  gap: 4px;
-  color: var(--primary-color);
+  gap: 6px;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.3s;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--bg-light);
 }
 
 .section-more:hover {
-  gap: 8px;
+  gap: 10px;
+  color: var(--primary-color);
+  background: var(--primary-50);
+}
+
+.section-more .el-icon {
+  transition: transform 0.3s;
+}
+
+.section-more:hover .el-icon {
+  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 20px;
+    font-size: 18px;
   }
-  
+
+  .section-title::before {
+    height: 18px;
+  }
+
   .section-tabs {
     gap: 16px;
   }
-  
+
   .tab-item {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 </style>

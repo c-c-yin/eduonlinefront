@@ -110,40 +110,27 @@ function handleMobileSearch() {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   z-index: 999;
-  height: 70px;
+  height: var(--header-height);
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--border-light);
   padding: 0;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
 .active {
   color: var(--primary-color);
-  position: relative;
-}
-
-.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 3px;
-  background: var(--primary-color);
-  border-radius: 3px;
+  font-weight: 600;
 }
 
 .top {
   width: 100%;
-  max-width: 1200px;
-  height: 70px;
+  max-width: var(--container-max-width);
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -153,39 +140,43 @@ function handleMobileSearch() {
 .top-nav {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .logo-link {
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .logo-link:hover {
-  transform: scale(1.02);
+  opacity: 0.85;
 }
 
 .logo-link img {
-  height: 40px;
+  height: 32px;
   width: auto;
 }
 
 .top-nav-title {
-  margin-left: 36px;
-  font-size: 15px;
-  position: relative;
+  margin-left: 32px;
+  font-size: 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .top-nav-title a {
-  color: var(--text-primary);
+  color: var(--text-regular);
   text-decoration: none;
-  padding: 8px 4px;
-  transition: all 0.2s ease;
+  padding: 8px 0;
+  transition: color 0.2s ease;
   font-weight: 500;
+  position: relative;
 }
 
 .top-nav-title a:hover {
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .top-nav-title a.active {
@@ -194,21 +185,22 @@ function handleMobileSearch() {
 
 .top-search {
   flex: 1;
-  max-width: 320px;
-  margin: 0 40px;
+  max-width: 360px;
+  margin: 0 32px;
 }
 
 .top-search :deep(.el-input) {
-  height: 40px;
-  line-height: 40px;
+  height: 38px;
+  line-height: 38px;
 }
 
 .top-search :deep(.el-input__wrapper) {
-  border-radius: 20px;
+  border-radius: 10px;
   background: var(--bg-light);
   box-shadow: none;
   border: 1px solid transparent;
   transition: all 0.2s ease;
+  padding: 0 14px;
 }
 
 .top-search :deep(.el-input__wrapper:hover) {
@@ -219,11 +211,11 @@ function handleMobileSearch() {
 .top-search :deep(.el-input__wrapper.is-focus) {
   background: #fff;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(70, 195, 123, 0.1);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
 }
 
 .top-search :deep(.el-input__prefix) {
-  color: var(--text-secondary);
+  color: var(--text-placeholder);
 }
 
 .top-user {
@@ -234,21 +226,21 @@ function handleMobileSearch() {
 }
 
 .top-user a {
-  font-size: 14px;
-  padding: 8px 16px;
+  font-size: 13px;
+  padding: 8px 14px;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 8px;
   transition: all 0.2s ease;
   font-weight: 500;
 }
 
 .top-user a:first-child {
-  color: var(--text-regular);
+  color: var(--text-secondary);
 }
 
 .top-user a:first-child:hover {
-  color: var(--primary-color);
-  background: var(--primary-50);
+  color: var(--text-primary);
+  background: var(--bg-light);
 }
 
 .top-user a:last-child {
@@ -258,7 +250,6 @@ function handleMobileSearch() {
 
 .top-user a:last-child:hover {
   background: var(--primary-dark);
-  box-shadow: var(--shadow-primary);
 }
 
 .top-user img {
@@ -282,34 +273,39 @@ function handleMobileSearch() {
 /* 移动端下拉菜单 */
 .mobile-menu {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 16px 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px;
   box-shadow: var(--shadow-lg);
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
 }
 
 .mobile-search {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .mobile-search :deep(.el-input__wrapper) {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .mobile-menu-item {
-  padding: 14px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-light);
-  transition: background 0.2s;
 }
 
-.mobile-menu-item:active {
-  background: var(--bg-light);
+.mobile-menu-item:last-child {
+  border-bottom: none;
 }
 
 .mobile-menu-item a {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-primary);
   text-decoration: none;
   display: block;
@@ -326,11 +322,11 @@ function handleMobileSearch() {
   flex: 1;
   text-align: center;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
 }
@@ -352,16 +348,27 @@ function handleMobileSearch() {
 /* 过渡动画 */
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide-down-enter-from,
 .slide-down-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
 /* 响应式 */
+@media (max-width: 1024px) {
+  .top-nav-title {
+    margin-left: 24px;
+  }
+
+  .top-search {
+    max-width: 280px;
+    margin: 0 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .desktop-nav,
   .desktop-search,
@@ -370,7 +377,9 @@ function handleMobileSearch() {
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu {
@@ -382,7 +391,13 @@ function handleMobileSearch() {
   }
 
   .logo-link img {
-    height: 36px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top {
+    padding: 0 12px;
   }
 }
 </style>

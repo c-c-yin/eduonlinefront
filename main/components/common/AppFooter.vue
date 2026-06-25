@@ -24,41 +24,53 @@ const siteConfig = computed(() => appStore.siteConfig)
 
 <style scoped>
 .footer-bottom {
-  background: rgb(51, 51, 51);
+  background: #18181b;
   z-index: 999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px 0;
+  padding: 12px 0;
   height: auto;
-  min-height: 50px;
+  min-height: var(--footer-height);
 }
 
 .copyright {
-  line-height: 20px;
+  line-height: 1.6;
   text-align: center;
-  color: #ccc;
+  color: #71717a;
   font-size: 12px;
 }
 
 .copyright a {
-  color: #ccc;
+  color: #a1a1aa;
 }
 
 .icp_num {
-  line-height: 24px;
+  line-height: 1.6;
   text-align: center;
-  color: #ccc;
+  color: #71717a;
   font-size: 12px;
 }
 
 .link {
-  color: #ccc;
+  color: #a1a1aa;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .link:hover {
-  text-decoration: underline;
+  color: #d4d4d8;
+}
+
+@media (max-width: 480px) {
+  .footer-bottom {
+    padding: 10px 12px;
+  }
+
+  .copyright,
+  .icp_num {
+    font-size: 11px;
+  }
 }
 </style>

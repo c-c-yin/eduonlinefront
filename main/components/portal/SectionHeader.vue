@@ -55,63 +55,37 @@ function handleTabClick(index: number) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border-light);
-  position: relative;
-}
-
-.section-header::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary-color) 0%, transparent 100%);
-  border-radius: 3px;
 }
 
 .section-left {
   display: flex;
   align-items: flex-end;
-  gap: 28px;
+  gap: 24px;
 }
 
 .section-title {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--text-primary);
   margin: 0;
-  position: relative;
-  padding-left: 14px;
-}
-
-.section-title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 22px;
-  background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-light) 100%);
-  border-radius: 2px;
 }
 
 .section-tabs {
   display: flex;
-  gap: 24px;
-  margin-bottom: 4px;
+  gap: 20px;
+  margin-bottom: 2px;
 }
 
 .tab-item {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 6px 0;
+  padding: 4px 0;
   position: relative;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-weight: 500;
 }
 
@@ -128,12 +102,11 @@ function handleTabClick(index: number) {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 3px;
+  left: 0;
+  right: 0;
+  height: 2px;
   background: var(--primary-color);
-  border-radius: 3px;
+  border-radius: 1px;
 }
 
 .section-right {
@@ -143,51 +116,41 @@ function handleTabClick(index: number) {
 }
 
 .right-text {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
-  background: var(--primary-50);
-  color: var(--primary-color);
-  padding: 5px 14px;
-  border-radius: 14px;
+  background: var(--bg-light);
+  padding: 4px 12px;
+  border-radius: 10px;
   font-weight: 500;
 }
 
 .section-more {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: var(--bg-light);
 }
 
 .section-more:hover {
-  gap: 10px;
   color: var(--primary-color);
-  background: var(--primary-50);
-}
-
-.section-more .el-icon {
-  transition: transform 0.3s;
 }
 
 .section-more:hover .el-icon {
-  transform: translateX(4px);
+  transform: translateX(2px);
+}
+
+.section-more .el-icon {
+  transition: transform 0.2s ease;
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 18px;
-  }
-
-  .section-title::before {
-    height: 18px;
+    font-size: 16px;
   }
 
   .section-tabs {
@@ -195,7 +158,19 @@ function handleTabClick(index: number) {
   }
 
   .tab-item {
-    font-size: 13px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-tabs {
+    margin-bottom: 0;
   }
 }
 </style>

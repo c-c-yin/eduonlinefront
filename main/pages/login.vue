@@ -285,12 +285,12 @@ onMounted(async () => {
 .login-page {
   min-height: 100vh;
   display: flex;
-  background: var(--bg-page, #f8fafc);
+  background: var(--bg-page);
 }
 
 .login-left {
-  width: 55%;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  width: 50%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #14b8a6 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -303,23 +303,28 @@ onMounted(async () => {
 .login-left::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 70%, rgba(70, 195, 123, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
-  animation: slowRotate 30s linear infinite;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
 }
 
-@keyframes slowRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.login-left::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
 }
 
 .brand-area {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   position: relative;
   z-index: 1;
 }
@@ -328,54 +333,54 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   margin-bottom: 16px;
 }
 
 .brand-logo {
-  height: 60px;
+  height: 48px;
   width: auto;
   filter: brightness(0) invert(1);
 }
 
 .brand-title {
-  font-size: 36px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 700;
   color: #fff;
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .brand-slogan {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
-  letter-spacing: 3px;
-  font-weight: 300;
+  letter-spacing: 2px;
+  font-weight: 400;
 }
 
 .left-carousel {
   width: 100%;
-  max-width: 480px;
-  border-radius: 16px;
+  max-width: 400px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 40px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  margin-bottom: 48px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .carousel-img {
   width: 100%;
-  height: 240px;
+  height: 200px;
   object-fit: cover;
 }
 
 .platform-stats {
   display: flex;
-  gap: 36px;
-  margin-bottom: 40px;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
   position: relative;
   z-index: 1;
 }
@@ -383,18 +388,16 @@ onMounted(async () => {
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px;
+  color: #fff;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
 }
 
 .stat-item .el-icon {
-  font-size: 24px;
-  color: var(--primary-color);
+  font-size: 20px;
+  opacity: 0.9;
 }
 
 .stat-info {
@@ -403,20 +406,19 @@ onMounted(async () => {
 }
 
 .stat-value {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 2px;
+  font-size: 11px;
+  opacity: 0.8;
 }
 
 .left-footer {
   position: absolute;
-  bottom: 24px;
+  bottom: 20px;
   left: 0;
   right: 0;
   text-align: center;
@@ -424,36 +426,35 @@ onMounted(async () => {
 }
 
 .left-footer p {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
   margin: 0;
 }
 
 .login-right {
-  width: 45%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px;
+  padding: 40px;
   background: #fff;
 }
 
 .login-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .login-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 10px;
-  letter-spacing: 0.5px;
+  margin: 0 0 8px;
 }
 
 .login-subtitle {
@@ -468,9 +469,9 @@ onMounted(async () => {
 
 .user-type-tabs {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .type-tab {
@@ -478,13 +479,13 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 0;
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
+  gap: 8px;
+  padding: 12px 0;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 15px;
+  transition: all 0.2s ease;
+  font-size: 14px;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -492,7 +493,6 @@ onMounted(async () => {
 .type-tab:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
-  background: var(--primary-50);
 }
 
 .type-tab.active {
@@ -500,11 +500,10 @@ onMounted(async () => {
   color: var(--primary-color);
   background: var(--primary-50);
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(70, 195, 123, 0.2);
 }
 
 .login-form :deep(.el-input__wrapper) {
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 4px 12px;
   box-shadow: none;
   border: 1.5px solid var(--border-color);
@@ -512,20 +511,20 @@ onMounted(async () => {
 }
 
 .login-form :deep(.el-input__wrapper:hover) {
-  border-color: var(--primary-color);
+  border-color: #d4d4d8;
 }
 
 .login-form :deep(.el-input__wrapper.is-focus) {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 4px rgba(70, 195, 123, 0.1);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
 }
 
 .login-form :deep(.el-input__inner) {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .login-form :deep(.el-input__prefix) {
-  color: var(--text-secondary);
+  color: var(--text-placeholder);
 }
 
 .captcha-row {
@@ -539,10 +538,10 @@ onMounted(async () => {
 }
 
 .captcha-image {
-  width: 130px;
-  height: 44px;
+  width: 110px;
+  height: 40px;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1.5px solid var(--border-color);
   transition: all 0.2s ease;
 }
@@ -560,30 +559,28 @@ onMounted(async () => {
 
 .login-options :deep(.el-checkbox__label) {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .login-button {
   width: 100%;
-  height: 50px;
-  font-size: 16px;
+  height: 46px;
+  font-size: 15px;
   font-weight: 600;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  box-shadow: 0 4px 14px rgba(70, 195, 123, 0.4);
-  transition: all 0.3s ease;
+  background: var(--primary-color);
+  transition: all 0.2s ease;
 }
 
 .login-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(70, 195, 123, 0.5);
+  background: var(--primary-dark);
 }
 
 .register-link {
   text-align: center;
   width: 100%;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 
@@ -597,32 +594,48 @@ onMounted(async () => {
   text-decoration: underline;
 }
 
+/* 响应式 */
+@media (max-width: 1024px) {
+  .login-left {
+    width: 45%;
+    padding: 36px 40px;
+  }
+
+  .login-right {
+    width: 55%;
+    padding: 32px;
+  }
+
+  .brand-title {
+    font-size: 26px;
+  }
+}
+
 @media (max-width: 768px) {
   .login-page {
     flex-direction: column;
+    min-height: auto;
   }
 
   .login-left {
     width: 100%;
-    padding: 32px 24px;
-    min-height: auto;
+    padding: 40px 24px;
   }
 
-  .login-left::before {
+  .left-carousel {
     display: none;
   }
 
-  .left-carousel,
   .platform-stats {
     display: none;
   }
 
   .brand-area {
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 
   .brand-title {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .brand-slogan {
@@ -640,6 +653,25 @@ onMounted(async () => {
 
   .left-footer {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-left {
+    padding: 32px 20px;
+  }
+
+  .login-right {
+    padding: 24px 20px;
+  }
+
+  .brand-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .login-title {
+    font-size: 24px;
   }
 }
 </style>

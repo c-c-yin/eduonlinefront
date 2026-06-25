@@ -283,15 +283,15 @@ useSeoMeta({
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 24px 20px 0;
 }
 
 .welcome-banner {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border-radius: 16px;
-  padding: 36px 44px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: var(--border-radius-lg);
+  padding: 28px 36px;
   margin-bottom: 24px;
   color: #fff;
   position: relative;
@@ -305,35 +305,22 @@ useSeoMeta({
   right: 0;
   bottom: 0;
   left: 50%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05));
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08));
   pointer-events: none;
 }
 
-.welcome-banner::after {
-  content: '';
-  position: absolute;
-  top: -50px;
-  right: 100px;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
-}
-
 .welcome-banner h1 {
-  margin: 0 0 10px;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600;
   position: relative;
   z-index: 1;
 }
 
 .welcome-banner p {
   margin: 0;
-  font-size: 14px;
-  opacity: 0.75;
-  font-weight: 400;
+  font-size: 13px;
+  opacity: 0.85;
   position: relative;
   z-index: 1;
 }
@@ -341,20 +328,20 @@ useSeoMeta({
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
 .stat-card {
   background: #fff;
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: var(--border-radius-lg);
+  padding: 20px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   position: relative;
-  box-shadow: var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.2s ease;
   overflow: hidden;
 }
 
@@ -363,55 +350,53 @@ useSeoMeta({
   position: absolute;
   top: 0;
   right: 0;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: var(--card-color);
-  opacity: 0.08;
+  opacity: 0.06;
   border-radius: 0 16px 0 100%;
 }
 
 .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .stat-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   background: var(--card-color);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .stat-value {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .stat-badge {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
   color: #fff;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 12px;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 10px;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
 .quick-actions {
@@ -419,45 +404,44 @@ useSeoMeta({
 }
 
 .section-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--text-primary);
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 }
 
 .action-grid {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
+  gap: 8px;
+  padding: 12px 20px;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   color: var(--text-regular);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-card);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-xs);
   position: relative;
 }
 
 .action-item:hover {
   color: #6366f1;
-  background: linear-gradient(135deg, #f0f2ff 0%, #e0e7ff 100%);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: #f0f2ff;
+  box-shadow: var(--shadow-sm);
 }
 
 .action-item :deep(.el-icon) {
-  padding: 8px;
+  padding: 6px;
   background: var(--bg-light);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .action-item:hover :deep(.el-icon) {
@@ -467,35 +451,24 @@ useSeoMeta({
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
 .panel {
   background: #fff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: var(--shadow-card);
+  border-radius: var(--border-radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-xs);
 }
 
 .panel-title {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text-primary);
-  margin: 0 0 18px;
-  padding-bottom: 14px;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.panel-title::before {
-  content: '';
-  width: 4px;
-  height: 18px;
-  background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 2px;
 }
 
 .homework-list,
@@ -503,7 +476,7 @@ useSeoMeta({
 .knowledge-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .homework-item,
@@ -511,8 +484,8 @@ useSeoMeta({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
-  border-radius: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
   background: var(--bg-light);
@@ -521,31 +494,30 @@ useSeoMeta({
 .homework-item:hover,
 .audit-item:hover {
   background: #e0e7ff;
-  transform: translateX(4px);
 }
 
 .homework-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .homework-name {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
   font-weight: 600;
 }
 
 .homework-class {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
 .homework-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 8px;
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
@@ -553,23 +525,23 @@ useSeoMeta({
   color: #ef4444;
   font-weight: 600;
   background: rgba(239, 68, 68, 0.1);
-  padding: 4px 10px;
-  border-radius: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
 }
 
 .homework-date {
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .homework-submit {
-  font-size: 12px;
+  font-size: 11px;
   color: #6366f1;
   font-weight: 600;
 }
 
 .audit-name {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
   flex: 1;
   overflow: hidden;
@@ -581,11 +553,11 @@ useSeoMeta({
 .knowledge-item {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px;
-  border-radius: 12px;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .knowledge-item:hover {
@@ -599,32 +571,33 @@ useSeoMeta({
 }
 
 .knowledge-class {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
   font-weight: 600;
 }
 
 .knowledge-rate {
-  font-size: 14px;
+  font-size: 13px;
   color: #6366f1;
   font-weight: 700;
 }
 
 .progress-bar {
-  height: 8px;
+  height: 6px;
   background: var(--bg-light);
-  border-radius: 4px;
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 4px;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 3px;
+  transition: width 0.3s ease;
 }
 
-@media (max-width: 900px) {
+/* 响应式 */
+@media (max-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -632,6 +605,52 @@ useSeoMeta({
   .content-grid {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 768px) {
+  .welcome-banner {
+    padding: 20px 24px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 18px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-grid {
+    flex-direction: column;
+  }
+
+  .action-item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px 0;
+  }
+}
+</style>
 
   .action-grid {
     flex-wrap: wrap;

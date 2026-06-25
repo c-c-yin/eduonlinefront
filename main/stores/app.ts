@@ -1,24 +1,24 @@
-import { defineStore } from 'pinia'
-import type { MenuItem, GlobalConfig, SiteConfig, Notice, FriendLink, Banner, HomeModuleConfig, PlatformStats } from '@/types'
-import { usePortalApi } from '@/composables/usePortalApi'
+导入 { 定义Store } 来自 'pinia'
+导入 类型 { 菜单项, 全局配置, 网站配置, 通知, 友链, 横幅, 主页模块配置, 平台统计 } 来自 '@/types'
+导入 { 使用门户API } 来自 '@/组合/使用门户API'
 
-const CACHE_KEY_PREFIX = 'edu_cache_ts:'
-const CACHE_TTL: Record<string, number> = {
-  globalConfig: 30 * 60 * 1000,
-  menuList: 60 * 60 * 1000,
-  friendLinks: 30 * 60 * 1000,
-  notices: 5 * 60 * 1000
+常量 缓存键前缀 = 'edu_cache_ts:'
+常量 缓存有效期: 记录<字符串, 数字> = {
+  全局配置: 30 * 60 * 1000,
+  菜单列表: 60 * 60 * 1000,
+  友情链接: 30 * 60 * 1000,
+  通知: 5 * 60 * 1000
 }
 
-function isCacheValid(key: string): boolean {
-  if (typeof window === 'undefined') return false
-  const ts = localStorage.getItem(CACHE_KEY_PREFIX + key)
-  if (!ts) return false
-  return Date.now() - parseInt(ts) < (CACHE_TTL[key] || 0)
+函数 isCacheValid(键: 字符串): 布尔值 {
+  如果 (类型 窗口 === '未定义') 返回 假
+  常量 ts = localStorage.getItem(CACHE_KEY_PREFIX + key)
+  如果 (!ts) 返回 假
+  返回 日期.现在() - 解析整数(ts) < (缓存 TTL[键] || 0)
 }
 
-function markCacheTime(key: string) {
-  if (typeof window === 'undefined') return
+函数 标记缓存时间(键: 字符串) {
+  如果 (类型 窗口 === '未定义') 返回
   localStorage.setItem(CACHE_KEY_PREFIX + key, String(Date.now()))
 }
 

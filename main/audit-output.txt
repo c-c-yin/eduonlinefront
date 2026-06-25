@@ -1,0 +1,182 @@
+﻿# npm audit report
+
+@nuxt/devtools  <=2.6.3
+Severity: moderate
+Depends on vulnerable versions of @nuxt/devtools-wizard
+Nuxt DevTools vulnerable to cross-site scripting (XSS) - https://github.com/advisories/GHSA-xmq3-q5pm-rp26
+fix available via `npm audit fix --force`
+Will install @nuxt/devtools@4.0.0-alpha.7, which is a breaking change
+node_modules/@nuxt/devtools
+  nuxt  <=3.21.5
+  Depends on vulnerable versions of @nuxt/devtools
+  Depends on vulnerable versions of @nuxt/kit
+  Depends on vulnerable versions of @nuxt/vite-builder
+  Depends on vulnerable versions of @unhead/vue
+  Depends on vulnerable versions of c12
+  Depends on vulnerable versions of devalue
+  Depends on vulnerable versions of esbuild
+  node_modules/nuxt
+
+@nuxt/vite-builder  <=0.5.0 || 3.0.0-rc.0 - 3.15.4
+Severity: high
+Depends on vulnerable versions of @nuxt/kit
+Depends on vulnerable versions of @vitejs/plugin-vue-jsx
+Opening a malicious website while running a Nuxt dev server could allow read-only access to code - https://github.com/advisories/GHSA-2452-6xj8-jh47
+Depends on vulnerable versions of esbuild
+Depends on vulnerable versions of vite
+Depends on vulnerable versions of vite-node
+fix available via `npm audit fix`
+node_modules/@nuxt/vite-builder
+
+@xmldom/xmldom  <=0.8.12
+Severity: high
+xmldom: Uncontrolled recursion in XML serialization leads to DoS - https://github.com/advisories/GHSA-2v35-w6hq-6mfw
+xmldom has XML injection through unvalidated DocumentType serialization - https://github.com/advisories/GHSA-f6ww-3ggp-fr8h
+xmldom has XML node injection through unvalidated processing instruction serialization - https://github.com/advisories/GHSA-x6wf-f3px-wcqx
+xmldom has XML node injection through unvalidated comment serialization - https://github.com/advisories/GHSA-j759-j44w-7fr8
+fix available via `npm audit fix`
+node_modules/@xmldom/xmldom
+
+axios  1.0.0 - 1.15.2
+Severity: high
+Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy - https://github.com/advisories/GHSA-w9j2-pvgh-6h63
+Axios: Incomplete Fix for CVE-2025-62718 鈥?NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0 - https://github.com/advisories/GHSA-pmwg-cvhr-8vh7
+Axios: Invisible JSON Response Tampering via Prototype Pollution Gadget in `parseReviver` - https://github.com/advisories/GHSA-3w6x-2g7m-8v23
+Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams - https://github.com/advisories/GHSA-xhjh-pmcv-23jw
+Axios: CRLF Injection in multipart/form-data body via unsanitized blob.type in formDataToStream - https://github.com/advisories/GHSA-445q-vr5w-6q77
+Axios: no_proxy bypass via IP alias allows SSRF - https://github.com/advisories/GHSA-m7pr-hjqh-92cm
+Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0 - https://github.com/advisories/GHSA-5c9x-8gcm-mpgx
+Axios: HTTP adapter streamed responses bypass maxContentLength - https://github.com/advisories/GHSA-vf2m-468p-8v99
+Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking - https://github.com/advisories/GHSA-pf86-5x62-jrwf
+Axios: Header Injection via Prototype Pollution - https://github.com/advisories/GHSA-6chq-wfr3-2hj9
+Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion - https://github.com/advisories/GHSA-xx6v-rp6x-q39c
+Axios has prototype pollution read-side gadgets in HTTP adapter that allow credential injection and request hijacking - https://github.com/advisories/GHSA-q8qp-cvcw-x6jj
+axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718) - https://github.com/advisories/GHSA-pjwm-pj3p-43mv
+axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions - https://github.com/advisories/GHSA-898c-q2cr-xwhg
+Allocation of Resources Without Limits or Throttling in Axios - https://github.com/advisories/GHSA-777c-7fjr-54vf
+Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter - https://github.com/advisories/GHSA-p92q-9vqr-4j8v
+Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection - https://github.com/advisories/GHSA-j5f8-grm9-p9fc
+Axios: unbounded recursion in toFormData causes DoS via deeply nested request data - https://github.com/advisories/GHSA-62hf-57xw-28j9
+Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection - https://github.com/advisories/GHSA-hfxv-24rg-xrqf
+axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge - https://github.com/advisories/GHSA-3g43-6gmg-66jw
+axios Vulnerable to Full Man-in-the-Middle via Prototype Pollution Gadget in `config.proxy` - https://github.com/advisories/GHSA-35jp-ww65-95wh
+fix available via `npm audit fix`
+node_modules/axios
+
+brace-expansion  5.0.2 - 5.0.5
+Severity: moderate
+brace-expansion: Large numeric range defeats documented `max` DoS protection - https://github.com/advisories/GHSA-jxxr-4gwj-5jf2
+fix available via `npm audit fix`
+node_modules/brace-expansion
+
+devalue  <=5.6.3
+Severity: high
+devalue prototype pollution vulnerability - https://github.com/advisories/GHSA-vj54-72f3-p5jv
+devalue affected by CPU and memory amplification from sparse arrays - https://github.com/advisories/GHSA-33hq-fvwr-56pm
+devalue `uneval`ed code can create objects with polluted prototypes when `eval`ed - https://github.com/advisories/GHSA-8qm3-746x-r74r
+devalue has prototype pollution in devalue.parse and devalue.unflatten - https://github.com/advisories/GHSA-cfw5-2vxh-hr84
+Sveltejs devalue's `devalue.parse` and `devalue.unflatten` emit objects with `__proto__` own properties - https://github.com/advisories/GHSA-mwv9-gp5h-frr4
+fix available via `npm audit fix`
+node_modules/devalue
+
+diff  6.0.0 - 8.0.2
+jsdiff has a Denial of Service vulnerability in parsePatch and applyPatch - https://github.com/advisories/GHSA-73rr-hh4g-fpgx
+fix available via `npm audit fix --force`
+Will install @nuxt/devtools@4.0.0-alpha.7, which is a breaking change
+node_modules/diff
+  @nuxt/devtools-wizard  1.4.2 - 2.4.1
+  Depends on vulnerable versions of diff
+  node_modules/@nuxt/devtools-wizard
+
+esbuild  <=0.24.2
+Severity: moderate
+esbuild enables any website to send any requests to the development server and read the response - https://github.com/advisories/GHSA-67mh-4wv8-2f99
+fix available via `npm audit fix --force`
+Will install vite@8.0.16, which is a breaking change
+node_modules/esbuild
+node_modules/vite/node_modules/esbuild
+  vite  <=6.4.1
+  Depends on vulnerable versions of esbuild
+  node_modules/vite
+    @vitejs/plugin-vue-jsx  2.0.0-alpha.0 - 4.1.0
+    Depends on vulnerable versions of vite
+    node_modules/@vitejs/plugin-vue-jsx
+    vite-node  <=2.2.0-beta.2
+    Depends on vulnerable versions of vite
+    node_modules/vite-node
+
+glob  10.2.0 - 10.4.5
+Severity: high
+glob CLI: Command injection via -c/--cmd executes matches with shell:true - https://github.com/advisories/GHSA-5j98-mcp5-4vw2
+fix available via `npm audit fix`
+node_modules/archiver-utils/node_modules/glob
+
+js-cookie  <=3.0.5
+Severity: high
+JavaScript Cookie: Per-instance prototype hijack in assign() enables cookie-attribute injection - https://github.com/advisories/GHSA-qjx8-664m-686j
+fix available via `npm audit fix`
+node_modules/js-cookie
+
+nitropack  <=2.13.3
+Severity: moderate
+Nitro has a proxy scope bypass via percent-encoded path traversal in `routeRules` - https://github.com/advisories/GHSA-5w89-w975-hf9q
+Nitro has an Open Redirect via Protocol-Relative URL Bypass in Wildcard Route Rules - https://github.com/advisories/GHSA-9phm-9p8f-hw5m
+fix available via `npm audit fix`
+node_modules/nitropack
+
+
+shell-quote  1.1.0 - 1.8.3
+Severity: critical
+shell-quote quote() does not escape newlines in object .op values - https://github.com/advisories/GHSA-w7jw-789q-3m8p
+fix available via `npm audit fix`
+node_modules/shell-quote
+
+tar  <=7.5.10
+Severity: high
+node-tar Vulnerable to Arbitrary File Creation/Overwrite via Hardlink Path Traversal - https://github.com/advisories/GHSA-34x7-hfp2-rc4v
+node-tar is Vulnerable to Arbitrary File Overwrite and Symlink Poisoning via Insufficient Path Sanitization - https://github.com/advisories/GHSA-8qq5-rm4j-mr97
+Arbitrary File Read/Write via Hardlink Target Escape Through Symlink Chain in node-tar Extraction - https://github.com/advisories/GHSA-83g3-92jg-28cx
+tar has Hardlink Path Traversal via Drive-Relative Linkpath - https://github.com/advisories/GHSA-qffp-2rhf-9h96
+node-tar Symlink Path Traversal via Drive-Relative Linkpath - https://github.com/advisories/GHSA-9ppj-qmqm-q256
+Race Condition in node-tar Path Reservations via Unicode Ligature Collisions on macOS APFS - https://github.com/advisories/GHSA-r6q2-hw4h-h46w
+fix available via `npm audit fix`
+node_modules/@nuxt/vite-builder/node_modules/tar
+node_modules/nuxt/node_modules/tar
+  giget  0.0.1 - 1.2.5
+  Depends on vulnerable versions of tar
+  node_modules/@nuxt/vite-builder/node_modules/giget
+  node_modules/nuxt/node_modules/giget
+    c12  1.1.0 - 2.0.4
+    Depends on vulnerable versions of giget
+    node_modules/@nuxt/vite-builder/node_modules/c12
+    node_modules/nuxt/node_modules/c12
+      @nuxt/kit  3.1.0 - 3.15.4
+      Depends on vulnerable versions of c12
+      node_modules/@nuxt/vite-builder/node_modules/@nuxt/kit
+      node_modules/nuxt/node_modules/@nuxt/kit
+
+unhead  <=2.1.12
+Severity: moderate
+Unhead Vulnerable to Bypass of URI Scheme Sanitization in makeTagSafe via Case-Sensitivity - https://github.com/advisories/GHSA-5339-hvwr-7582
+Unhead has XSS bypass in `useHeadSafe` via attribute name injection and case-sensitive protocol check - https://github.com/advisories/GHSA-g5xx-pwrp-g3fv
+Unhead has a hasDangerousProtocol() bypass via leading-zero padded HTML entities in useHeadSafe() - https://github.com/advisories/GHSA-95h2-gj7x-gx9w
+fix available via `npm audit fix`
+node_modules/unhead
+  @unhead/vue  <=0.6.3 || 1.0.22 - 2.1.10
+  Depends on vulnerable versions of unhead
+  node_modules/@unhead/vue
+
+
+ws  8.0.0 - 8.20.0
+Severity: moderate
+ws: Uninitialized memory disclosure - https://github.com/advisories/GHSA-58qx-3vcg-4xpx
+fix available via `npm audit fix`
+node_modules/ws
+
+24 vulnerabilities (3 low, 9 moderate, 10 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force

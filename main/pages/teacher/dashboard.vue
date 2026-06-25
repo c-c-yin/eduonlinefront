@@ -650,8 +650,8 @@ useSeoMeta({
     padding: 16px 12px 0;
   }
 }
-</style>
 
+@media (max-width: 768px) {
   .action-grid {
     flex-wrap: wrap;
   }

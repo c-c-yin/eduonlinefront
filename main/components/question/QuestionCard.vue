@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="question-card" :class="{ 'show-result': showResult, 'is-correct': isCorrect }">
     <div class="question-header">
       <div class="question-type-tag" :class="`type-${question.questionType}`">

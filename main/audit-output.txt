@@ -1,4 +1,4 @@
-﻿# npm audit report
+# npm audit report
 
 @nuxt/devtools  <=2.6.3
 Severity: moderate

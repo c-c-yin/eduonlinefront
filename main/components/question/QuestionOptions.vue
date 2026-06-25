@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="question-options">
     <template v-if="questionType === 1">
       <el-radio-group v-model="modelValue" :disabled="disabled" class="option-group">

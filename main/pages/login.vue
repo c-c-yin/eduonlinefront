@@ -10,7 +10,7 @@
       </div>
 
       <div class="left-carousel" v-if="loginBanners.length > 0">
-        <el-carousel height="240px" :interval="5000" arrow="hover">
+        <el-carousel height="200px" :interval="5000" arrow="hover">
           <el-carousel-item v-for="banner in loginBanners" :key="banner.bannerId">
             <img :src="banner.bannerImage" :alt="banner.bannerTitle" class="carousel-img" />
           </el-carousel-item>
@@ -204,11 +204,6 @@ const loginRules: FormRules = {
   ]
 }
 
-const registerEnabled = computed(() => {
-  if (!appStore.siteConfig) return true
-  return appStore.siteConfig.registerSwitch !== false
-})
-
 function isValidRedirect(url: string | undefined): boolean {
   if (!url) return false
   if (!url.startsWith('/')) return false
@@ -217,27 +212,19 @@ function isValidRedirect(url: string | undefined): boolean {
   return true
 }
 
-// 获取验证码：后端 GET /code 返回扁平结构 { code, msg, captchaEnabled, uuid, img }
-// img/uuid/captchaEnabled 均在 JSON 根上（非 data 嵌套），request.ts 响应拦截器返回整个对象。
-// 注意：/code 返回的是 JSON 而非图片本身，因此不能用 <img src="/code?..."> 直接加载，
-//      必须读取 res.img 的 base64 内容拼成 data URI。
 async function getCaptcha() {
   try {
     const res: any = await get('/code', {}, { requestKey: 'login-captcha' })
-    // 后端关闭验证码时 captchaEnabled=false，隐藏整块表单项
     captchaEnabled.value = res?.captchaEnabled !== false
     if (captchaEnabled.value && res?.img) {
       loginForm.uuid = res?.uuid || ''
       captchaUrl.value = `data:image/gif;base64,${res.img}`
     }
   } catch (e) {
-    // 请求失败（后端未启动/网络异常）：保持 captchaEnabled 默认 true，
-    // 但不要 fallback 到 '/code?uuid=' —— 那会返回 JSON，<img> 渲染为裂图。
     console.error('获取验证码失败：', e)
   }
 }
 
-// 模板里点击图片换一张
 async function refreshCaptcha() {
   await getCaptcha()
 }
@@ -270,7 +257,6 @@ async function handleLogin() {
 onMounted(async () => {
   getCaptcha()
   appStore.fetchGlobalConfig().catch(() => {})
-  // Load login banners
   try {
     const bannerCode = appStore.globalConfig['login.banner_code'] || 'login_banner'
     const data = await getBannersByCode(bannerCode)
@@ -290,7 +276,7 @@ onMounted(async () => {
 
 .login-left {
   width: 50%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, #14b8a6 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -516,15 +502,7 @@ onMounted(async () => {
 
 .login-form :deep(.el-input__wrapper.is-focus) {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
-}
-
-.login-form :deep(.el-input__inner) {
-  font-size: 14px;
-}
-
-.login-form :deep(.el-input__prefix) {
-  color: var(--text-placeholder);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
 }
 
 .captcha-row {
@@ -550,18 +528,6 @@ onMounted(async () => {
   border-color: var(--primary-color);
 }
 
-.login-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.login-options :deep(.el-checkbox__label) {
-  color: var(--text-secondary);
-  font-size: 13px;
-}
-
 .login-button {
   width: 100%;
   height: 46px;
@@ -577,24 +543,6 @@ onMounted(async () => {
   background: var(--primary-dark);
 }
 
-.register-link {
-  text-align: center;
-  width: 100%;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.register-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-/* 响应式 */
 @media (max-width: 1024px) {
   .login-left {
     width: 45%;

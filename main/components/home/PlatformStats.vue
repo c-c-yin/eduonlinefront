@@ -27,10 +27,10 @@ const props = defineProps<Props>()
 const statItems = computed(() => {
   const d = props.data
   return [
-    { label: '课程视频', value: d?.courseCount || 0, icon: VideoCamera, bgColor: 'linear-gradient(135deg, #667eea, #764ba2)' },
-    { label: '试题资源', value: d?.questionCount || 0, icon: Edit, bgColor: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-    { label: '试卷资源', value: d?.paperCount || 0, icon: Document, bgColor: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-    { label: '学习时长(小时)', value: d?.studyHours || 0, icon: Timer, bgColor: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+    { label: '课程视频', value: d?.courseCount || 0, icon: VideoCamera, bgColor: 'linear-gradient(135deg, #3b82f6, #2563eb)' },
+    { label: '试题资源', value: d?.questionCount || 0, icon: Edit, bgColor: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' },
+    { label: '试卷资源', value: d?.paperCount || 0, icon: Document, bgColor: 'linear-gradient(135deg, #f59e0b, #d97706)' },
+    { label: '学习时长(小时)', value: d?.studyHours || 0, icon: Timer, bgColor: 'linear-gradient(135deg, #22c55e, #16a34a)' }
   ].map(item => ({
     ...item,
     displayValue: formatStatValue(item.value)
@@ -49,15 +49,15 @@ function formatStatValue(val: number): string {
 .platform-stats {
   background: #fff;
   border-radius: var(--border-radius-lg);
-  padding: 32px 32px;
+  padding: 28px;
   margin-bottom: 24px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-xs);
 }
 
 .stats-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
   max-width: var(--container-max-width);
   margin: 0 auto;
 }
@@ -94,7 +94,7 @@ function formatStatValue(val: number): string {
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
@@ -112,7 +112,7 @@ function formatStatValue(val: number): string {
   }
 
   .stats-inner {
-    gap: 16px;
+    gap: 14px;
   }
 }
 
@@ -132,13 +132,13 @@ function formatStatValue(val: number): string {
   }
 
   .stat-value {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .stat-icon {
     width: 40px;
     height: 40px;
-  border-radius: 10px;
+    border-radius: 10px;
   }
 
   .stat-card {

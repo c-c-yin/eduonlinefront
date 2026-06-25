@@ -79,7 +79,6 @@ const activeUrl = computed(() => route.path)
 const searchKeyword = ref('')
 const mobileMenuVisible = ref(false)
 
-// 监听登录状态变化，刷新菜单
 watch(() => userStore.isLoggedIn, async (loggedIn) => {
   if (loggedIn && userStore.userType) {
     await appStore.refreshMenuByUserType(userStore.userType)
@@ -88,7 +87,6 @@ watch(() => userStore.isLoggedIn, async (loggedIn) => {
   }
 }, { immediate: false })
 
-// 路由变化时关闭移动菜单
 watch(() => route.path, () => { mobileMenuVisible.value = false })
 
 function handleSearch() {
@@ -172,11 +170,10 @@ function handleMobileSearch() {
   padding: 8px 0;
   transition: color 0.2s ease;
   font-weight: 500;
-  position: relative;
 }
 
 .top-nav-title a:hover {
-  color: var(--text-primary);
+  color: var(--primary-color);
 }
 
 .top-nav-title a.active {
@@ -211,7 +208,7 @@ function handleMobileSearch() {
 .top-search :deep(.el-input__wrapper.is-focus) {
   background: #fff;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .top-search :deep(.el-input__prefix) {
@@ -252,11 +249,6 @@ function handleMobileSearch() {
   background: var(--primary-dark);
 }
 
-.top-user img {
-  border-radius: 50%;
-}
-
-/* 移动端按钮 */
 .mobile-menu-btn {
   display: none;
   cursor: pointer;
@@ -270,7 +262,6 @@ function handleMobileSearch() {
   background: var(--bg-light);
 }
 
-/* 移动端下拉菜单 */
 .mobile-menu {
   display: none;
   position: absolute;
@@ -298,10 +289,6 @@ function handleMobileSearch() {
 .mobile-menu-item {
   padding: 12px 0;
   border-bottom: 1px solid var(--border-light);
-}
-
-.mobile-menu-item:last-child {
-  border-bottom: none;
 }
 
 .mobile-menu-item a {
@@ -345,7 +332,6 @@ function handleMobileSearch() {
   background: var(--primary-dark);
 }
 
-/* 过渡动画 */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -357,7 +343,6 @@ function handleMobileSearch() {
   transform: translateY(-8px);
 }
 
-/* 响应式 */
 @media (max-width: 1024px) {
   .top-nav-title {
     margin-left: 24px;

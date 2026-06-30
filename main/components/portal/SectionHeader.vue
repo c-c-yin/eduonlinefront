@@ -55,9 +55,9 @@ function handleTabClick(index: number) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .section-left {
@@ -67,25 +67,26 @@ function handleTabClick(index: number) {
 }
 
 .section-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .section-tabs {
   display: flex;
   gap: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .tab-item {
-  font-size: 15px;
-  color: #666;
+  font-size: 13px;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px 0;
   position: relative;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .tab-item:hover {
@@ -94,7 +95,7 @@ function handleTabClick(index: number) {
 
 .tab-item.active {
   color: var(--primary-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .tab-item.active::after {
@@ -105,6 +106,7 @@ function handleTabClick(index: number) {
   right: 0;
   height: 2px;
   background: var(--primary-color);
+  border-radius: 1px;
 }
 
 .section-right {
@@ -114,39 +116,61 @@ function handleTabClick(index: number) {
 }
 
 .right-text {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--text-secondary);
-  background: rgba(70, 195, 123, 0.08);
+  background: var(--bg-light);
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: 10px;
+  font-weight: 500;
 }
 
 .section-more {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--primary-color);
+  color: var(--text-secondary);
   text-decoration: none;
-  font-size: 14px;
-  transition: all 0.3s;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .section-more:hover {
-  gap: 8px;
+  color: var(--primary-color);
+}
+
+.section-more:hover .el-icon {
+  transform: translateX(2px);
+}
+
+.section-more .el-icon {
+  transition: transform 0.2s ease;
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 20px;
+    font-size: 16px;
   }
-  
+
   .section-tabs {
     gap: 16px;
   }
-  
+
   .tab-item {
-    font-size: 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-tabs {
+    margin-bottom: 0;
   }
 }
 </style>

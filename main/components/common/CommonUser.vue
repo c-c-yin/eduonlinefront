@@ -46,18 +46,34 @@ async function handleLogout() {
   display: flex;
   align-items: center;
   cursor: pointer;
-  gap: 6px;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.el-dropdown-link:hover {
+  background: var(--bg-light);
+  border-color: var(--border-color);
 }
 
 .header-image {
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
+  height: 34px;
+  width: 34px;
   object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--border-color);
 }
 
 .user-name {
   font-size: 14px;
-  color: #333;
+  font-weight: 500;
+  color: var(--text-regular);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

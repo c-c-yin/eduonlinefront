@@ -52,7 +52,7 @@ watch(() => route.path, () => {
 
 .el-main {
   flex: 1;
-  margin-top: 70px;
+  margin-top: var(--header-height);
   overflow: auto;
   padding: 0;
 }
@@ -62,7 +62,7 @@ watch(() => route.path, () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #14b8a6 100%);
 }
 
 .maintenance-content {
@@ -77,15 +77,15 @@ watch(() => route.path, () => {
 }
 
 .maintenance-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 .maintenance-desc {
-  font-size: 16px;
-  opacity: 0.85;
+  font-size: 15px;
+  opacity: 0.9;
   line-height: 1.6;
-  max-width: 500px;
+  max-width: 480px;
 }
 </style>

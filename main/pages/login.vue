@@ -10,7 +10,7 @@
       </div>
 
       <div class="left-carousel" v-if="loginBanners.length > 0">
-        <el-carousel height="240px" :interval="5000" arrow="hover">
+        <el-carousel height="200px" :interval="5000" arrow="hover">
           <el-carousel-item v-for="banner in loginBanners" :key="banner.bannerId">
             <img :src="banner.bannerImage" :alt="banner.bannerTitle" class="carousel-img" />
           </el-carousel-item>
@@ -204,11 +204,6 @@ const loginRules: FormRules = {
   ]
 }
 
-const registerEnabled = computed(() => {
-  if (!appStore.siteConfig) return true
-  return appStore.siteConfig.registerSwitch !== false
-})
-
 function isValidRedirect(url: string | undefined): boolean {
   if (!url) return false
   if (!url.startsWith('/')) return false
@@ -217,27 +212,19 @@ function isValidRedirect(url: string | undefined): boolean {
   return true
 }
 
-// 获取验证码：后端 GET /code 返回扁平结构 { code, msg, captchaEnabled, uuid, img }
-// img/uuid/captchaEnabled 均在 JSON 根上（非 data 嵌套），request.ts 响应拦截器返回整个对象。
-// 注意：/code 返回的是 JSON 而非图片本身，因此不能用 <img src="/code?..."> 直接加载，
-//      必须读取 res.img 的 base64 内容拼成 data URI。
 async function getCaptcha() {
   try {
     const res: any = await get('/code', {}, { requestKey: 'login-captcha' })
-    // 后端关闭验证码时 captchaEnabled=false，隐藏整块表单项
     captchaEnabled.value = res?.captchaEnabled !== false
     if (captchaEnabled.value && res?.img) {
       loginForm.uuid = res?.uuid || ''
       captchaUrl.value = `data:image/gif;base64,${res.img}`
     }
   } catch (e) {
-    // 请求失败（后端未启动/网络异常）：保持 captchaEnabled 默认 true，
-    // 但不要 fallback 到 '/code?uuid=' —— 那会返回 JSON，<img> 渲染为裂图。
     console.error('获取验证码失败：', e)
   }
 }
 
-// 模板里点击图片换一张
 async function refreshCaptcha() {
   await getCaptcha()
 }
@@ -270,7 +257,6 @@ async function handleLogin() {
 onMounted(async () => {
   getCaptcha()
   appStore.fetchGlobalConfig().catch(() => {})
-  // Load login banners
   try {
     const bannerCode = appStore.globalConfig['login.banner_code'] || 'login_banner'
     const data = await getBannersByCode(bannerCode)
@@ -285,12 +271,12 @@ onMounted(async () => {
 .login-page {
   min-height: 100vh;
   display: flex;
-  background: var(--bg-page, #f6f8fb);
+  background: var(--bg-page);
 }
 
 .login-left {
-  width: 55%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 50%;
+  background: linear-gradient(150deg, #3b82f6 0%, #2563eb 45%, #1e3a8a 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -300,21 +286,45 @@ onMounted(async () => {
   overflow: hidden;
 }
 
+.login-left::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.login-left::after {
+  content: '';
+  position: absolute;
+  bottom: -160px;
+  left: -120px;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
 .brand-area {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
 }
 
 .brand-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   margin-bottom: 16px;
 }
 
 .brand-logo {
-  height: 56px;
+  height: 48px;
   width: auto;
   filter: brightness(0) invert(1);
 }
@@ -324,34 +334,41 @@ onMounted(async () => {
   font-weight: 700;
   color: #fff;
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .brand-slogan {
-  font-size: 18px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
   letter-spacing: 2px;
+  font-weight: 400;
 }
 
 .left-carousel {
   width: 100%;
-  max-width: 480px;
+  max-width: 400px;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-bottom: 48px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
 }
 
 .carousel-img {
   width: 100%;
-  height: 240px;
+  height: 200px;
   object-fit: cover;
 }
 
 .platform-stats {
   display: flex;
-  gap: 32px;
-  margin-bottom: 40px;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-item {
@@ -359,10 +376,22 @@ onMounted(async () => {
   align-items: center;
   gap: 10px;
   color: #fff;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .stat-item .el-icon {
-  font-size: 28px;
+  font-size: 20px;
   opacity: 0.9;
 }
 
@@ -372,42 +401,48 @@ onMounted(async () => {
 }
 
 .stat-value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 11px;
   opacity: 0.8;
 }
 
 .left-footer {
   position: absolute;
-  bottom: 24px;
+  bottom: 20px;
   left: 0;
   right: 0;
   text-align: center;
+  z-index: 1;
 }
 
 .left-footer p {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
   margin: 0;
 }
 
 .login-right {
-  width: 45%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: #fff;
+  background: linear-gradient(180deg, #f4f7fb 0%, #ffffff 100%);
 }
 
 .login-card {
   width: 100%;
   max-width: 400px;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 36px;
 }
 
 .login-header {
@@ -417,7 +452,7 @@ onMounted(async () => {
 
 .login-title {
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 8px;
 }
@@ -436,6 +471,7 @@ onMounted(async () => {
   display: flex;
   gap: 12px;
   width: 100%;
+  margin-bottom: 4px;
 }
 
 .type-tab {
@@ -445,12 +481,13 @@ onMounted(async () => {
   justify-content: center;
   gap: 8px;
   padding: 12px 0;
-  border: 2px solid #e8e8e8;
-  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s;
-  font-size: 15px;
-  color: #666;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .type-tab:hover {
@@ -461,8 +498,25 @@ onMounted(async () => {
 .type-tab.active {
   border-color: var(--primary-color);
   color: var(--primary-color);
-  background: rgba(255, 80, 0, 0.05);
-  font-weight: 500;
+  background: var(--primary-50);
+  font-weight: 600;
+}
+
+.login-form :deep(.el-input__wrapper) {
+  border-radius: 10px;
+  padding: 4px 12px;
+  box-shadow: none;
+  border: 1.5px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.login-form :deep(.el-input__wrapper:hover) {
+  border-color: #d4d4d8;
+}
+
+.login-form :deep(.el-input__wrapper.is-focus) {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
 }
 
 .captcha-row {
@@ -476,69 +530,73 @@ onMounted(async () => {
 }
 
 .captcha-image {
-  width: 120px;
+  width: 110px;
   height: 40px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  transition: all 0.2s ease;
 }
 
-.login-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.forgot-link {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
+.captcha-image:hover {
+  border-color: var(--primary-color);
 }
 
 .login-button {
   width: 100%;
-  height: 44px;
-  font-size: 16px;
+  height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 8px 18px -6px rgba(37, 99, 235, 0.55);
+  transition: all 0.2s ease;
 }
 
-.register-link {
-  text-align: center;
-  width: 100%;
-  font-size: 14px;
-  color: var(--text-secondary);
+.login-button:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px -6px rgba(37, 99, 235, 0.6);
 }
 
-.register-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
+@media (max-width: 1024px) {
+  .login-left {
+    width: 45%;
+    padding: 36px 40px;
+  }
 
-.register-link a:hover {
-  text-decoration: underline;
+  .login-right {
+    width: 55%;
+    padding: 32px;
+  }
+
+  .brand-title {
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 768px) {
   .login-page {
     flex-direction: column;
+    min-height: auto;
   }
 
   .login-left {
     width: 100%;
-    padding: 32px 24px;
-    min-height: auto;
+    padding: 40px 24px;
   }
 
-  .left-carousel,
+  .left-carousel {
+    display: none;
+  }
+
   .platform-stats {
     display: none;
   }
 
   .brand-area {
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 
   .brand-title {
@@ -546,16 +604,39 @@ onMounted(async () => {
   }
 
   .brand-slogan {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .login-right {
     width: 100%;
-    padding: 24px;
+    padding: 32px 24px;
+  }
+
+  .login-card {
+    max-width: 100%;
   }
 
   .left-footer {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-left {
+    padding: 32px 20px;
+  }
+
+  .login-right {
+    padding: 24px 20px;
+  }
+
+  .brand-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .login-title {
+    font-size: 24px;
   }
 }
 </style>

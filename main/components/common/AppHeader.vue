@@ -79,7 +79,6 @@ const activeUrl = computed(() => route.path)
 const searchKeyword = ref('')
 const mobileMenuVisible = ref(false)
 
-// 监听登录状态变化，刷新菜单
 watch(() => userStore.isLoggedIn, async (loggedIn) => {
   if (loggedIn && userStore.userType) {
     await appStore.refreshMenuByUserType(userStore.userType)
@@ -88,7 +87,6 @@ watch(() => userStore.isLoggedIn, async (loggedIn) => {
   }
 }, { immediate: false })
 
-// 路由变化时关闭移动菜单
 watch(() => route.path, () => { mobileMenuVisible.value = false })
 
 function handleSearch() {
@@ -110,161 +108,252 @@ function handleMobileSearch() {
   top: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   z-index: 999;
-  height: 70px;
+  height: var(--header-height);
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #ebeef5;
+  border-bottom: 1px solid var(--border-light);
   padding: 0;
+  transition: all 0.3s ease;
 }
 
 .active {
-  color: #46c37b;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .top {
   width: 100%;
-  max-width: 1200px;
-  height: 70px;
+  max-width: var(--container-max-width);
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .top-nav {
   display: flex;
   align-items: center;
+  height: 100%;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
 }
 
 .logo-link img {
-  height: 35px;
+  height: 32px;
   width: auto;
 }
 
 .top-nav-title {
-  margin-left: 30px;
-  font-size: 16px;
+  margin-left: 32px;
+  font-size: 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .top-nav-title a {
-  color: #333;
+  color: var(--text-regular);
   text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s ease;
+  font-weight: 500;
 }
 
 .top-nav-title a:hover {
-  color: #46c37b;
+  color: var(--primary-color);
 }
 
 .top-nav-title a.active {
-  color: #46c37b;
+  color: var(--primary-color);
 }
 
 .top-search {
   flex: 1;
-  max-width: 300px;
-  margin: 0 30px;
+  max-width: 360px;
+  margin: 0 32px;
 }
 
 .top-search :deep(.el-input) {
-  height: 35px;
-  line-height: 35px;
+  height: 38px;
+  line-height: 38px;
 }
 
 .top-search :deep(.el-input__wrapper) {
-  border-radius: 4px;
+  border-radius: 10px;
+  background: var(--bg-light);
+  box-shadow: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  padding: 0 14px;
+}
+
+.top-search :deep(.el-input__wrapper:hover) {
+  background: #fff;
+  border-color: var(--border-color);
+}
+
+.top-search :deep(.el-input__wrapper.is-focus) {
+  background: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.top-search :deep(.el-input__prefix) {
+  color: var(--text-placeholder);
 }
 
 .top-user {
   display: flex;
   align-items: center;
   white-space: nowrap;
+  gap: 8px;
 }
 
 .top-user a {
-  font-size: 14px;
-  margin-left: 12px;
+  font-size: 13px;
+  padding: 8px 14px;
   text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
-.top-user a:hover {
-  color: #46c37b;
+.top-user a:first-child {
+  color: var(--text-secondary);
 }
 
-.top-user img {
-  border-radius: 50%;
+.top-user a:first-child:hover {
+  color: var(--text-primary);
+  background: var(--bg-light);
 }
 
-/* 移动端按钮 */
+.top-user a:last-child {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.top-user a:last-child:hover {
+  background: var(--primary-dark);
+}
+
 .mobile-menu-btn {
   display: none;
   cursor: pointer;
-  color: #333;
+  color: var(--text-primary);
   padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
-/* 移动端下拉菜单 */
+.mobile-menu-btn:hover {
+  background: var(--bg-light);
+}
+
 .mobile-menu {
   display: none;
-  background: #fff;
-  border-top: 1px solid #ebeef5;
-  padding: 12px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
 }
 
 .mobile-search {
   margin-bottom: 12px;
 }
 
+.mobile-search :deep(.el-input__wrapper) {
+  border-radius: 10px;
+}
+
 .mobile-menu-item {
   padding: 12px 0;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .mobile-menu-item a {
-  font-size: 16px;
-  color: #333;
+  font-size: 15px;
+  color: var(--text-primary);
   text-decoration: none;
   display: block;
+  font-weight: 500;
 }
 
 .mobile-auth {
   display: flex;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 .mobile-auth-btn {
   flex: 1;
   text-align: center;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  color: #333;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mobile-auth-btn:hover {
+  background: var(--bg-light);
 }
 
 .mobile-auth-btn.primary {
-  background: #46c37b;
+  background: var(--primary-color);
   color: #fff;
-  border-color: #46c37b;
+  border-color: var(--primary-color);
 }
 
-/* 过渡动画 */
+.mobile-auth-btn.primary:hover {
+  background: var(--primary-dark);
+}
+
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide-down-enter-from,
 .slide-down-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
-/* 响应式 */
+@media (max-width: 1024px) {
+  .top-nav-title {
+    margin-left: 24px;
+  }
+
+  .top-search {
+    max-width: 280px;
+    margin: 0 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .desktop-nav,
   .desktop-search,
@@ -273,7 +362,9 @@ function handleMobileSearch() {
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu {
@@ -282,6 +373,16 @@ function handleMobileSearch() {
 
   .top {
     padding: 0 16px;
+  }
+
+  .logo-link img {
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top {
+    padding: 0 12px;
   }
 }
 </style>

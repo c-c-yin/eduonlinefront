@@ -27,10 +27,10 @@ const props = defineProps<Props>()
 const statItems = computed(() => {
   const d = props.data
   return [
-    { label: '课程视频', value: d?.courseCount || 0, icon: VideoCamera, bgColor: 'linear-gradient(135deg, #667eea, #764ba2)' },
-    { label: '试题资源', value: d?.questionCount || 0, icon: Edit, bgColor: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-    { label: '试卷资源', value: d?.paperCount || 0, icon: Document, bgColor: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-    { label: '学习时长(小时)', value: d?.studyHours || 0, icon: Timer, bgColor: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+    { label: '课程视频', value: d?.courseCount || 0, icon: VideoCamera, bgColor: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' },
+    { label: '试题资源', value: d?.questionCount || 0, icon: Edit, bgColor: 'linear-gradient(135deg, #0ea5e9, #0369a1)' },
+    { label: '试卷资源', value: d?.paperCount || 0, icon: Document, bgColor: 'linear-gradient(135deg, #f59e0b, #d97706)' },
+    { label: '学习时长(小时)', value: d?.studyHours || 0, icon: Timer, bgColor: 'linear-gradient(135deg, #16a34a, #15803d)' }
   ].map(item => ({
     ...item,
     displayValue: formatStatValue(item.value)
@@ -47,38 +47,40 @@ function formatStatValue(val: number): string {
 
 <style scoped>
 .platform-stats {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: var(--border-radius-lg, 12px);
-  padding: 40px 32px;
+  background: #fff;
+  border-radius: var(--border-radius-lg);
+  padding: 28px;
   margin-bottom: 24px;
+  box-shadow: var(--shadow-xs);
 }
 
 .stats-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1200px;
+  gap: 16px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  transition: background 0.3s;
+  background: var(--bg-light);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.2s ease;
 }
 
 .stat-card:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--bg-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .stat-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,37 +94,55 @@ function formatStatValue(val: number): string {
 }
 
 .stat-value {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .platform-stats {
+    padding: 24px;
+  }
+
+  .stats-inner {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
   .stats-inner {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+  .platform-stats {
+    padding: 20px;
+  }
+
   .stats-inner {
-    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
   .stat-value {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .stat-icon {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .stat-card {
+    padding: 12px 16px;
   }
 }
 </style>

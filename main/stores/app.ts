@@ -89,15 +89,15 @@ export const useAppStore = defineStore('app', {
     },
     /** 主题色：从全局配置读取，默认 #46c37b */
     themeColor: (state): string => {
-      return state.globalConfig['site.theme.color'] || '#46c37b'
+      return state.globalConfig['site.theme.color'] || '#2563eb'
     },
     /** 主题色（浅色变体） */
     themeColorLight: (state): string => {
-      return state.globalConfig['site.theme.color.light'] || '#5fd996'
+      return state.globalConfig['site.theme.color.light'] || '#60a5fa'
     },
     /** 主题色（深色变体） */
     themeColorDark: (state): string => {
-      return state.globalConfig['site.theme.color.dark'] || '#2a9d5e'
+      return state.globalConfig['site.theme.color.dark'] || '#1d4ed8'
     }
   },
   
